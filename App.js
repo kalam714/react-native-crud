@@ -1,20 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+
+//navigation
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+// Screens
+import {HomeScreen} from "./Screens/HomeScreen";
+import {UpdateScreen} from "./Screens/UpdateScreen";
+import {CreateAuthorScreen} from "./Screens/CreateAuthorScreen";
+import {AuthorListScreen} from "./Screens/AuthorListScreen";
+window.baseUrl = 'https://4702-43-250-81-46.in.ngrok.io'
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+                <Stack.Screen
+                    name="Home"
+                    component={HomeScreen}
+                    options={{ title: 'Home' }}
+                />
+
+                <Stack.Screen
+                    name="AuthorList"
+                    component={AuthorListScreen}
+                    options={{ title: 'Author List' }}
+                />
+
+                <Stack.Screen
+                    name="CreateAuthor"
+                    component={CreateAuthorScreen}
+                    options={{ title: 'Create Author' }}
+                />
+
+                <Stack.Screen
+                    name="Update"
+                    component={UpdateScreen}
+                    options={{ title: 'Update Author' }}
+                />
+
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+}
